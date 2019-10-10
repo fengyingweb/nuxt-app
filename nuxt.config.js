@@ -1,6 +1,6 @@
-import pkg from './package'
+const pkg =  require('./package')
 
-export default {
+module.exports = {
   mode: 'universal',
 
   /*
@@ -76,7 +76,7 @@ export default {
   */
   build: {
     transpile: [/^element-ui/],
-    publicPath: '/static/',
+    // publicPath: '/static/',
     extractCSS: true,
 
     // 按需引入element-ui

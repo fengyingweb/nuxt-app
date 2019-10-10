@@ -68,7 +68,7 @@ export default {
 
     // 跳转动态路由页
     handleClickNav(id) {
-      this.$router.push({path: id ? `/users/${id}` : '/users'})
+      this.$router.push({path: id ? `/users/${id}.html` : '/users'})
     }
   },
   mounted() {
