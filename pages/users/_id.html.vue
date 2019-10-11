@@ -16,11 +16,6 @@ export default {
   // 使用方式有两种返回Promise, 或者使用async/await
   async asyncData({ params }) {
     return { userId: params.id }
-  },
-
-  // created() {
-  //   let {id} = this.$route.params
-  //   this.userId = id
-  // }
+  }
 }
 </script>

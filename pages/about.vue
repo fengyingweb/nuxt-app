@@ -42,11 +42,6 @@ export default {
     handlePop() {
       this.decreaseList()
     }
-  },
-
-  asyncData(ctx) {
-    console.log(ctx);
-    return {};
   }
 }
 </script>

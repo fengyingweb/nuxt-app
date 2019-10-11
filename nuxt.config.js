@@ -1,19 +1,15 @@
-const pkg =  require('./package')
 
 module.exports = {
   mode: 'universal',
-
   /*
   ** Headers of the page
   */
   head: {
-    title: pkg.name,
+    title: process.env.npm_package_name || '',
     meta: [
       { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=0' },
-      { name: 'author', content: pkg.author},
-      { name: 'keywords', content: 'nuxtjs, vuejs'},
-      { hid: 'description', name: 'description', content: pkg.description }
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
@@ -22,7 +18,6 @@ module.exports = {
       { src: 'https://hm.baidu.com/hm.js?7daac41ef5a814fc08b89be509a29d2a' }
     ]
   },
-
   /*
   ** Customize the progress-bar color
   */
@@ -30,7 +25,6 @@ module.exports = {
     color: '#267aff',
     failedColor: '#f56c6c'
   },
-
   /*
   ** Global CSS
   */
@@ -38,39 +32,41 @@ module.exports = {
     'element-ui/lib/theme-chalk/index.css',
     '@assets/styles/base.scss'
   ],
-
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '@/plugins/main',
+    '@/plugins/element-ui',
     '@/plugins/baidu'
   ],
-
+  /*
+  ** Nuxt.js dev-modules
+  */
+  buildModules: [
+  ],
   /*
   ** Nuxt.js modules
   */
   modules: [
-    // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/proxy'
   ],
   /*
   ** Axios module configuration
+  * 服务端渲染请求接口不需要代理
   */
-  axios: {
-    // See https://github.com/nuxt-community/axios-module#options
-    proxy: true
-  },
+  // axios: {
+  //   // See https://github.com/nuxt-community/axios-module#options
+  //   proxy: true
+  // },
 
-  proxy: {
-    '/api': {
-      target: 'http://localhost:3000',
-      logLevel: 'debug',
-      changeOrigin: true
-    }
-  },
-
+  // proxy: {
+  //   '/api': {
+  //     target: 'http://localhost:3000',
+  //     logLevel: 'debug',
+  //     changeOrigin: true
+  //   }
+  // },
   /*
   ** Build configuration
   */
@@ -78,7 +74,7 @@ module.exports = {
     transpile: [/^element-ui/],
     // publicPath: '/static/',
     extractCSS: true,
-
+    
     // 按需引入element-ui
     babel: {
       plugins: [
@@ -88,20 +84,10 @@ module.exports = {
         ]
       ]
     },
-
     /*
     ** You can extend webpack config here
     */
-    extend(config, ctx) {
-      // Run ESLint on save
-      // if (ctx.isDev && ctx.isClient) {
-      //   config.module.rules.push({
-      //     enforce: 'pre',
-      //     test: /\.(js|vue)$/,
-      //     loader: 'eslint-loader',
-      //     exclude: /(node_modules)/
-      //   })
-      // }
+    extend (config, ctx) {
     }
   },
 
@@ -114,10 +100,6 @@ module.exports = {
     name: 'fade',
     mode: 'out-in'
   },
-  
-  // router: {
-  //   base: process.env.NODE_ENV === 'production' ? './' : '/'
-  // },
 
   generate: {
     subFolders: true, // 设置为false时, 生成的html文件名会安照路由路径, 但是开启本地服务刷新页面时会找不到页面的问题
