@@ -8,6 +8,7 @@ import {Button,
   Message,
   MessageBox} from 'element-ui'
 
+console.log('NODE_ENV: ', process.env.NODE_ENV)
 export default () => {
   Vue.prototype.$msgbox = MessageBox
   Vue.prototype.$alert = MessageBox.alert

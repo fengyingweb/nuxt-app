@@ -1,6 +1,10 @@
 
 module.exports = {
   mode: 'universal',
+  // 自定义环境变量
+  env: {
+    'NODE_ENV': process.env.NODE_ENV
+  },
   /*
   ** Headers of the page
   */
