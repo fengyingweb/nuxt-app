@@ -1,9 +1,9 @@
-
+const ip = require('ip')
 module.exports = {
   mode: 'universal',
   // 自定义环境变量
   env: {
-    'NODE_ENV': process.env.NODE_ENV
+    'BUILD_ENV': process.env.BUILD_ENV
   },
   /*
   ** Headers of the page
@@ -96,8 +96,7 @@ module.exports = {
   },
 
   server: {
-    port: 8080,
-    host: 'localhost'
+    host: ip.address()
   },
 
   transition: {

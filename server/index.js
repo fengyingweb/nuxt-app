@@ -1,7 +1,8 @@
 const Koa = require('koa')
 const consola = require('consola')
 const { Nuxt, Builder } = require('nuxt')
-
+const favicon = require('koa-favicon')
+const path = require('path')
 const app = new Koa()
 
 // Import and Set Nuxt.js options
@@ -22,6 +23,8 @@ async function start () {
     const builder = new Builder(nuxt)
     await builder.build()
   } else {
+    // 生产打包, 设置favicon
+    app.use(favicon(path.join(__dirname, '../', 'favicon.ico')))
     await nuxt.ready()
   }
 
